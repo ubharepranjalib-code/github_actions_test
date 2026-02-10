@@ -1,0 +1,44 @@
+name: workflow1
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      VAR1:
+        description: "var1 (true/false)"
+        required: false
+        default: "true"
+        type: choice
+        options:
+          - true
+          - false
+      VAR2:
+        description: "var2 (text)"
+        required: false
+        default: "Hello World"
+        type: string
+
+env:
+  VAR1: ${{ github.event.inputs.VAR1 || 'true' }}
+  VAR2: ${{ github.event.inputs.VAR2 || 'Hello World' }}
+
+jobs:
+  job1:
+    runs-on: standard-ghes
+    steps:
+      - name: Echo VAR2 when VAR1 is true
+        if: ${{ env.VAR1 == 'true' }}
+        run: echo "${{ env.VAR2 }}"
+
+      - name: Echo name
+        run: echo "Hello!! First steo to github actions!!"
+
+  job2:
+    runs-on: standard-ghes
+    needs: job1
+    if: ${{ needs.job1.result == 'success' }}
+    steps:
+      - name: Greeting
+        run: echo "Good morning! user"
