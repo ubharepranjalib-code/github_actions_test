@@ -25,4 +25,4 @@ jobs:
         run: echo "i am doing grat!"
       - name: step4
         if: ${{ inputs.areYouFeelingGood }}
-        run: echo "i am not good"
+        run: echo "i am not good!!"
