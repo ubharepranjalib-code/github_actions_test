@@ -21,8 +21,8 @@ jobs:
       - name: Step2
         run: echo "This is step2 with need of greeting"
       - name:  step3
-        if: $ {{ input.areYouFeelingGood }}
+        if: ${{ inputs.areYouFeelingGood }}
         run: echo "i am doing grat!
       - name: step4
-        if: $ {{ input.areYouFeelingGood }}
+        if: ${{ inputs.areYouFeelingGood }}
         run: echo "i am not good"
