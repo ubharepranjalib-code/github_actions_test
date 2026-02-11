@@ -21,7 +21,8 @@ jobs:
 
     steps:
       - name: Show selected environment
-        run: echo "Selected environment ${{ inputs.target_env }}"
+        run: |
+          echo "Selected environment ${{ inputs.target_env }}"
       
       - name: Display greeting from environment variable
         run: |
