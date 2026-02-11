@@ -1,7 +1,6 @@
 name: 03 - Manual environment choice with greetings
 
 on:
-    
   workflow_dispatch:
     inputs:
       target_env:
@@ -22,11 +21,9 @@ jobs:
 
     steps:
       - name: Show selected environment
-        run: |
-            echo "Selected environment: ${{ inputs.target_env }}"
+        run: echo "Selected environment: ${{ inputs.target_env }}"
       
       - name: Display greeting from environment variable
         run: |
           echo "Welcome, ${{ inputs.user_name }}!"
           echo "${{ vars.ENV_GREETING }} from ${{ inputs.target_env }}!!"
-          
