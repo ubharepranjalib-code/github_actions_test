@@ -1,0 +1,30 @@
+name: 03 - Manual environment choice with greetings
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: "Choose environment"
+        type: choice
+        options: [staging, production, test]
+        default: test
+      user_name:
+        description: "Enter your name"
+        type: string
+        required: true
+        default: "Guest"
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_env }}
+
+    steps:
+      - name: Show selected environment
+        run: echo "Selected environment - ${{ inputs.target_env }}"
+      
+      - name: Display greeting from environment variable
+        run: |
+          echo "Welcome, ${{ inputs.user_name }}!"
+          echo "${{ vars.ENV_GREETING }} from ${{ inputs.target_env }}!!"
+          
